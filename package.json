@@ -1,0 +1,21 @@
+{
+  "name": "ism-ai-agent-controls",
+  "version": "1.0.0",
+  "description": "ASD Information Security Manual (ISM) AI agent controls CLI and evidence register generator",
+  "main": "bin/ism-agent.cjs",
+  "bin": {
+    "ism-agent": "bin/ism-agent.cjs"
+  },
+  "keywords": [
+    "asd",
+    "ism",
+    "ai-agents",
+    "agentic-ai",
+    "compliance",
+    "australia",
+    "cyber-security",
+    "harness"
+  ],
+  "author": "Sorami Consulting Pty Ltd",
+  "license": "MIT"
+}

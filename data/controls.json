@@ -1,0 +1,109 @@
+{
+  "standard": "Australian Signals Directorate Information Security Manual (ISM)",
+  "release": "September 2026",
+  "upstream_oscal_version": "v2026.09.4",
+  "companion_guidance": "Agentic AI harnesses - The layer above the model (11 Sep 2026)",
+  "harness_components": [
+    "user_interface",
+    "prompt_and_policy_layer",
+    "context_manager",
+    "model_interface",
+    "tool_registry",
+    "permission_system",
+    "execution_environment",
+    "connector_layer",
+    "memory_and_session_store",
+    "audit_and_observability",
+    "update_and_supply_chain"
+  ],
+  "controls": [
+    {
+      "id": "ISM-2133",
+      "revision": 0,
+      "status": "new",
+      "section": "Guidelines for system access",
+      "topic": "Artificial intelligence agent identification",
+      "harness_component": "permission_system",
+      "requirement": "Each AI agent is assigned a unique identity that is distinct from the user accounts of personnel and the identities of other AI agents.",
+      "plain": "An agent cannot run as a person, and two agents cannot share one identity.",
+      "evidence_criteria": "Identity provider service principal / IAM role assigned uniquely to this agent."
+    },
+    {
+      "id": "ISM-2134",
+      "revision": 0,
+      "status": "new",
+      "section": "Guidelines for system access",
+      "topic": "Artificial intelligence agent register",
+      "harness_component": "audit_and_observability",
+      "requirement": "An AI agent register is developed, implemented, maintained and regularly verified.",
+      "plain": "The register has to exist, stay current, and be checked against reality.",
+      "evidence_criteria": "Active configuration file or repository register verified on deployment pipeline."
+    },
+    {
+      "id": "ISM-2135",
+      "revision": 0,
+      "status": "new",
+      "section": "Guidelines for system access",
+      "topic": "Artificial intelligence agent register",
+      "harness_component": "tool_registry",
+      "requirement": "An AI agent register contains the following for each AI agent: its unique identifier; its owner and business purpose; the identities assigned to it; any user accounts and credentials it uses; and the tools, permissions and data repositories it can access.",
+      "plain": "Five fields per agent: unique ID, owner/purpose, identities, credentials used, and tool/data access.",
+      "evidence_criteria": "Manifest containing id, owner, purpose, assigned_identities, credentials, and allowed_tools."
+    },
+    {
+      "id": "ISM-2156",
+      "revision": 0,
+      "status": "new",
+      "section": "Guidelines for software development",
+      "topic": "Excessive agency",
+      "harness_component": "tool_registry",
+      "requirement": "Agentic AI applications are restricted to the minimum set of tools, functions and permissions required for their intended purpose.",
+      "plain": "Least privilege, applied to the tool list rather than to a role.",
+      "evidence_criteria": "Tool registry configuration restricting functions to declared minimal schema."
+    },
+    {
+      "id": "ISM-2157",
+      "revision": 0,
+      "status": "new",
+      "section": "Guidelines for software development",
+      "topic": "Excessive agency",
+      "harness_component": "permission_system",
+      "requirement": "Tools invoked by agentic AI applications are subject to both the access controls of the invoking user and agent-specific, task-scoped authorisation, with effective permissions limited to the minimum permitted by both.",
+      "plain": "The agent gets the intersection of its own scope and the user it acts for.",
+      "evidence_criteria": "Runtime authorization middleware calculating dual-bound permission intersection."
+    },
+    {
+      "id": "ISM-2158",
+      "revision": 0,
+      "status": "new",
+      "section": "Guidelines for software development",
+      "topic": "Excessive agency",
+      "harness_component": "context_manager",
+      "requirement": "External content retrieved by agentic AI applications is treated as untrusted data throughout processing, is clearly delimited from system instructions, is subject to validation and sanitisation measures applied to other untrusted input, remains untrusted following such processing, and is prevented from modifying or overriding system instructions, security policies, access controls, tool permissions or human approval requirements.",
+      "plain": "Retrieved content stays untrusted even after sanitisation, and can never change the rules.",
+      "evidence_criteria": "Context delimiter wrappers (e.g. XML tags, quarantine buffers) separating data from system prompts."
+    },
+    {
+      "id": "ISM-2159",
+      "revision": 0,
+      "status": "new",
+      "section": "Guidelines for software development",
+      "topic": "Excessive agency",
+      "harness_component": "audit_and_observability",
+      "requirement": "All tool invocations, external requests and outputs generated by agentic AI applications are centrally logged with sufficient detail to support cyber security incident investigations.",
+      "plain": "Tool calls and outputs, centrally, at a detail level an investigation can use.",
+      "evidence_criteria": "Centralized SIEM / log stream capturing structured tool call payloads, parameters, and outputs."
+    },
+    {
+      "id": "ISM-2113",
+      "revision": 1,
+      "status": "amended",
+      "section": "Guidelines for system hardening",
+      "topic": "Artificial intelligence applications",
+      "harness_component": "permission_system",
+      "requirement": "AI applications are configured to require human approval before executing sensitive or high-impact actions.",
+      "plain": "Approval is now required for sensitive actions, not just flagged for a human to notice.",
+      "evidence_criteria": "Approval workflow gateway requiring explicit out-of-band user token before execution."
+    }
+  ]
+}
